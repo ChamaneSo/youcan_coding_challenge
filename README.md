@@ -1,64 +1,96 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Youcan codgin challenge
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Installation
 
-## About Laravel
+First, you have to clone the projecy by running this command:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+```
+git clone https://github.com/ChamaneSo/youcan_coding_challenge.git
+```
+then install the composer dependencies by running this command:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+```
+composer install
+```
+finnaly install the npm scripts with vue router:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```
+npm install
+npm install vue-router@4
+```
+## Running the app
 
-## Learning Laravel
+Just run the two commands in separated CLIs:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```
+php artisan serve
+```
+```
+npm run dev
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## CLI features
 
-## Laravel Sponsors
+### Categories
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#### Creation
 
-### Premium Partners
+To create a category throught CLI, you have just run this command:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+```
+php artisan categorye:create {name} {--parent=id}
+```
+##### Paramters
 
-## Contributing
+- name: the name of the category.
+- parent: is an optional paramter, if the category has a prent specify its id with this paramter.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### Deletion
 
-## Code of Conduct
+To delete a category from database throught CLI, just run this command:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```
+php artisan categorye:delete {id}
+```
+##### Paramters
 
-## Security Vulnerabilities
+- id: The is of the category that you want to delete.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Products
 
-## License
+#### Creation
+To create a new product just run this command:
+```
+php artisan product:create {name} {description} {price} {image} {--category=id} {--category=id}
+```
+##### Paramters
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- name: The name of the product.
+- description: The description of the product.
+- price: The price of the product.
+- image: The path of the product image.
+- categoy: this paramter is optional if the product not belongs to any category, but if the product blongs to a category or many categories you have to specify the ids.
+
+#### Deletion
+To delete a product just run this command:
+```
+php artisan product:delete {id}
+```
+##### Paramters
+
+- id: the id of the product that you want to delete.
+
+## WEB features
+
+In the web side we have just function related to products.
+
+### Index page
+in this page we have a table to present the collection of the products with several functionalities:
+- pagination.
+- button to sort products by name in acsending order.
+- button to sort products by price in ascending order.
+- list of categories to filter products by a category.
+
+### Creation page
+
+In this page we have a form to create a new product.
