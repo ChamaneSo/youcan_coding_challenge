@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateProductRequest;
+use App\Services\Http\CategoriesService;
+use App\Services\Http\ProductsService;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
+    public function __construct(ProductsService $productsService , CategoriesService $categoriesService)
+    {
+        $this->products = $productsService; $this->categories = $categoriesService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +21,10 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json([
+            'products' => $this->products->index(),
+            'categories' => $this->categories->list()
+        ]);
     }
 
     /**
@@ -32,9 +43,9 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateProductRequest $request)
     {
-        //
+        return $this->products->create($request);
     }
 
     /**
@@ -80,5 +91,13 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function filter($category_id){
+        return $this->products->filter($category_id);
+    }
+
+    public function sort($sort){
+        return $this->products->index($sort);
     }
 }

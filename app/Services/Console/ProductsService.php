@@ -29,7 +29,7 @@ class ProductsService
             $command->error('The provided image path is not exists');
             return ;
         }
-        $path = Storage::putFile('products', new File($command->argument('image')));
+        $path = 'media/'.Storage::putFile('products', new File($command->argument('image')));
         $this->products->create([
             'name' => $command->argument('name'),
             'description' => $command->argument('description'),

@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class CategoriesRepository
 {
+    public function all(){
+        return Category::all();
+    }
+
     public function create(array $data) : Category{
         return Category::create([
             'name' => $data['name'],

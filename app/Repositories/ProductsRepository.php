@@ -13,8 +13,8 @@ class ProductsRepository
         $this->categories = $categoriesRepository;
     }
 
-    public function all($sort='id'){
-        return Product::orderBy($sort)->paginate(20);
+    public function all($sort){
+        return Product::orderBy($sort)->paginate(2);
     }
 
     public function create(array $date,string $path ,array $categories) : Product{
@@ -36,8 +36,8 @@ class ProductsRepository
         return $this->find($id)->forceDelete();
     }
 
-    public function filterByCategory($category_id , $sort='id'){
-        $this->categories->find($category_id)->products()->orderBy($sort)->paginate(20);
+    public function filterByCategory($category_id){
+        return $this->categories->find($category_id)->products()->paginate(20);
     }
 
 }

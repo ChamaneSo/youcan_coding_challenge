@@ -14,5 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    //dd(\Illuminate\Support\Facades\Storage::url(\App\Models\Product::all()->first()->image));
     return view('welcome');
 });
+
+Route::resource('products' , \App\Http\Controllers\ProductsController::class)->only('store' , 'index');
+Route::get('products/filter/{category_id}' , [\App\Http\Controllers\ProductsController::class , 'filter']);
+
+Route::get('products/sort/{sort}' , [\App\Http\Controllers\ProductsController::class , 'sort']);
